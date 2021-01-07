@@ -1,0 +1,257 @@
+<header>
+
+<h2>TOTAL STREAMS: {{{addCommas totalStreams}}}</h2>
+</header>
+
+<body>
+  <p>
+    Updated at {{{date}}}
+  </p>
+  <p>
+    <a class="btn btn-primary" href="/spotify-csv" role="button">CSV</a>
+  </p>
+</body>
+
+
+
+<div class="modal fade" id="filtered100m" tabindex="-1" role="dialog" aria-hidden="true"> 
+  <div class="modal-dialog modal-lg" role="document"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title">Tracks with over 100 million streams on Spotify</h5> 
+      </div> 
+      <div class="modal-body">
+        <table>
+          <tr>
+            <th>Song</th>
+            <th>Streams</th>
+          </tr>
+           {{#each tracks100m}}
+              <tr>
+                <td>{{this.name}}</td>
+                <td>{{addCommas this.playcount}}</td>
+              </tr>
+            {{/each}}
+        </table>
+      </div>
+      <div class="modal-footer"> 
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="filtered50m" tabindex="-1" role="dialog" aria-hidden="true"> 
+  <div class="modal-dialog modal-lg" role="document"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title">Tracks with over 50 million streams on Spotify</h5> 
+      </div> 
+      <div class="modal-body">
+        <table>
+          <tr>
+            <th>Song</th>
+            <th>Streams</th>
+          </tr>
+           {{#each tracks50m}}
+              <tr>
+                <td>{{this.name}}</td>
+                <td>{{addCommas this.playcount}}</td>
+              </tr>
+            {{/each}}
+        </table>
+      </div>
+      <div class="modal-footer"> 
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="filtered10m" tabindex="-1" role="dialog" aria-hidden="true"> 
+  <div class="modal-dialog modal-lg" role="document"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title">Tracks with over 10 million streams on Spotify</h5> 
+      </div> 
+      <div class="modal-body">
+        <table>
+          <tr>
+            <th>Song</th>
+            <th>Streams</th>
+          </tr>
+           {{#each tracks10m}}
+              <tr>
+                <td>{{this.name}}</td>
+                <td>{{addCommas this.playcount}}</td>
+              </tr>
+            {{/each}}
+        </table>
+      </div>
+      <div class="modal-footer"> 
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+      </div> 
+    </div>
+  </div>
+</div>
+
+<div class="streams-section">
+  
+<div class="row ">
+    <div class="col-lg-3 col-sm-6">
+      <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" data-toggle="pill" href="#latest" role="tab" aria-selected="true">Latest releases</a>
+        {{#each albums}}
+        <a class="nav-link" data-toggle="pill" href="#{{{this.id}}}" role="tab" aria-selected="false">{{{this.name}}}</a>
+        {{/each}}
+<!--         <a class="nav-link" data-toggle="pill" href="#hobi" role="tab" aria-selected="false">j-hope</a>
+        <a class="nav-link" data-toggle="pill" href="#joon" role="tab" aria-selected="false">RM</a>
+        <a class="nav-link" data-toggle="pill" href="#yoon" role="tab" aria-selected="false">SUGA / Agust D</a> -->
+      </div>
+    </div>
+    <div class="col-lg-9 col-sm-6 albums-streams">
+
+      <div class="tab-content" >
+        <div class="tab-pane fade show active" id="latest" role="tabpanel">
+          {{#each latestRelease}}
+            <h3>
+            {{{this.name}}}
+          </h3>
+          <table>
+              <tr>
+                <th>Song</th>
+                <th>Streams</th>
+              </tr>
+              {{#each this.streams}}
+              <tr>
+                <td>{{{this.name}}}</td>
+                <td>{{{addCommas this.playcount}}}</td>
+              </tr>
+              {{/each}}
+              <tr>
+                <td><strong>Total streams</strong></td>
+                <td><strong>{{{addCommas this.total}}}</strong></td>
+              </tr>
+          </table>
+          {{/each}}
+        </div>
+        {{#each albums}}
+          <div class="tab-pane fade" id="{{{this.id}}}" role="tabpanel">
+            <h3>
+            {{{this.name}}}
+            </h3>
+            <table>
+              <tr>
+                <th>Song</th>
+                <th>Streams</th>
+              </tr>
+              {{#each this.streams}}
+              <tr>
+                <td>{{{this.name}}}</td>
+                <td>{{{addCommas this.playcount}}}</td>
+              </tr>
+              {{/each}}
+              <tr>
+                <td><strong>Total streams</strong></td>
+                <td><strong>{{{addCommas this.total}}}</strong></td>
+              </tr>
+          </table>
+          </div>  
+        {{/each}}
+        <div class="tab-pane fade" id="hobi" role="tabpanel">
+          {{#each jhope}} 
+          <h3>
+            {{{this.name}}}
+          </h3>
+          <table>
+              <tr>
+                <th>Song</th>
+                <th>Streams</th>
+              </tr>
+              {{#each this.streams}}
+              <tr>
+                <td>{{{this.name}}}</td>
+                <td>{{{addCommas this.playcount}}}</td>
+              </tr>
+              {{/each}}
+              <tr>
+                <td><strong>Total streams</strong></td>
+                <td><strong>{{{addCommas this.total}}}</strong></td>
+              </tr>
+          </table>
+          {{/each}}
+        </div>
+        <div class="tab-pane fade" id="joon" role="tabpanel">
+          {{#each rm}} 
+          <h3>
+            {{{this.name}}}
+          </h3>
+          <table>
+              <tr>
+                <th>Song</th>
+                <th>Streams</th>
+              </tr>
+              {{#each this.streams}}
+              <tr>
+                <td>{{{this.name}}}</td>
+                <td>{{{addCommas this.playcount}}}</td>
+              </tr>
+              {{/each}}
+              <tr>
+                <td><strong>Total streams</strong></td>
+                <td><strong>{{{addCommas this.total}}}</strong></td>
+              </tr>
+          </table>
+          {{/each}}
+        </div>
+        <div class="tab-pane fade" id="yoon" role="tabpanel">
+          {{#each suga}} 
+          <h3>
+            {{{this.name}}}
+          </h3>
+          <table>
+              <tr>
+                <th>Song</th>
+                <th>Streams</th>
+              </tr>
+              {{#each this.streams}}
+              <tr>
+                <td>{{{this.name}}}</td>
+                <td>{{{addCommas this.playcount}}}</td>
+              </tr>
+              {{/each}}
+              <tr>
+                <td><strong>Total streams</strong></td>
+                <td><strong>{{{addCommas this.total}}}</strong></td>
+              </tr>
+          </table>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<h5>Tracks over 100 million streams: {{{tracks100m.length}}}
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filtered100m"> View 
+  </button> 
+</h5>
+
+
+<h5>Tracks over 50 million streams: {{{tracks50m.length}}}
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filtered50m"> View 
+  </button> 
+</h5>
+
+
+<h5>Tracks over 10 million streams: {{{tracks10m.length}}}
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filtered10m"> View 
+  </button> 
+</h5>
